@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/weather-icons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <form action="/" method="post">
+          <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
+          <input type="submit" class="ghost-button" value="Get Weather">
+        </form>
+        <% if(name !== null){ %>
+            <p><%= name %></p>
+            <i class="wi wi-owm-500"></i>
+            <p><%= temperature %></p>
+            <button type="submit" formaction="/temperature">°F</button>
+          <% } %>
+  
+          <% if(error !== null){ %>
+            <p><%= error %></p>
+          <% } %>
+      </fieldset>
+    </div>
+  </body>
+</html>
