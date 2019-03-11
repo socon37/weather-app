@@ -10,19 +10,14 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
-
 app.get('/', function (req, res) {
-  res.render('index', {name: null, icon: null, temperature: null, error: null});
+  res.render('index', {name: null, description: null, temperature: null, unit: null, error: null});
 })
 
-app.get('/temperature', function (req, res) {
-    res.render('index', {name: null, icon: null, temperature: null, error: null});
-  })
 
-
-app.post('/', function (req, res) {
-  let city = req.body.city;
-  let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+app.post('/F', function (req, res) {
+  //let city = req.body.city;
+  let url = `http://api.openweathermap.org/data/2.5/weather?q=Seattle&units=imperial&appid=${apiKey}`
 
   request(url, function (err, response, body) {
     if(err){
@@ -39,7 +34,32 @@ app.post('/', function (req, res) {
             console.log(weather.weather[i].main + ':' + weather.weather[i].description);
         }
         let weatherIcon = `<i class="wi wi-owm-${weather.weather[0].id}"></i>`;
-        res.render('index', {name: weather.name, icon:weatherIcon, temperature:weather.main.temp, unit:"°F", error: null});
+        res.render('index', {name: weather.name, description:weather.weather[0].description, temperature:Math.round(weather.main.temp), unit:"°F", error: null});
+      }
+    }
+  });
+})
+
+app.post('/C', function (req, res) {
+  //let city = req.body.city;
+  let url = `http://api.openweathermap.org/data/2.5/weather?q=Seattle&units=metric&appid=${apiKey}`
+
+  request(url, function (err, response, body) {
+    if(err){
+      res.render('index', {weather: null, error: 'Error, please try again'});
+    } else {
+      let weather = JSON.parse(body)
+      console.log(weather);
+      if(weather.main == undefined){
+        res.render('index', {weather: null, error: 'Error, please try again'});
+      } else {
+        console.log(weather.name);
+        console.log(weather.main.temp);
+        for(i=0; i<weather.weather.length; i++){
+            console.log(weather.weather[i].main + ':' + weather.weather[i].description);
+        }
+        let weatherIcon = `<i class="wi wi-owm-${weather.weather[0].id}"></i>`;
+        res.render('index', {name: weather.name, description:weather.weather[0].description, temperature:Math.round(weather.main.temp), unit:"°C", error: null});
       }
     }
   });

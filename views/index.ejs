@@ -6,25 +6,50 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/weather-icons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"> 
   </head>
   <body>
     <div class="container">
       <fieldset>
-        <form action="/" method="post">
-          <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
-          <input type="submit" class="ghost-button" value="Get Weather">
+        <form action="/F" method="post">
+          <!--<input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>-->
+          <button type="submit" action="/F" method="post" class="ghost-button" value="F">F</button>
         </form>
+        <form action="/C" method="post">
+          <!--<input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>-->
+          <button type="submit" action="/C" method="post" class="ghost-button" value="C">C</button>
+        </form>
+      </fieldset>
+      <div class="details">
         <% if(name !== null){ %>
-            <p><%= name %></p>
-            <i class="wi wi-owm-500"></i>
-            <p><%= temperature %></p>
-            <button type="submit" formaction="/temperature">°F</button>
+            <p class="city"><%= name %></p>
+            <p class="temp"><%= temperature %><%= unit %></p>
+            <p class="description"><%= description %></p>
           <% } %>
   
           <% if(error !== null){ %>
             <p><%= error %></p>
           <% } %>
-      </fieldset>
+      </div>
+      <div class="cards">
+          <div class="card">
+            <h1>Monday</h1>
+          </div>
+          <div class="card">
+            <h1>Tuesday</h1>
+          </div>
+          <div class="card">
+            <h1>Wednesday</h1>
+          </div>
+          <div class="card">
+            <h1>Thursday</h1>
+          </div>
+          <div class="card">
+            <h1>Friday</h1>
+          </div>
+      </div>
     </div>
   </body>
 </html>
