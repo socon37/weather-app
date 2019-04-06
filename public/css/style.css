@@ -49,6 +49,7 @@ body {
   width: 100%;
   margin-bottom: 4px;
   text-align: center;
+  margin-top:250px;
   
 }
 
@@ -151,7 +152,7 @@ form {
   text-align: left;
   text-transform: capitalize;
   text-align: center;
-  margin-top:250px;
+  margin-top:12px;
 }
 
 
@@ -177,7 +178,7 @@ form {
   /*padding: 24px;*/
   background-color:#fff;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px, rgba(0, 0, 0, 0.05) 0px 0.5px 1px;
-  transition: all 0.333s ease-out 0s;
+  /*transition: all 0.333s ease-out 0s;*/
 }
 
 .forecastDay:hover {
@@ -196,14 +197,23 @@ form {
 .forecastDay i {
   margin-top: 28px;
   font-size: 3.5em;
-  height: 70px;
+  height: 30px;
+  text-transform: capitalize;
+}
+
+.cardDescription {
+  width: 100%;
+  height: 16px;
+  float: left;
+  padding: 0px 0px;
+  text-transform: capitalize;
 }
 
 .cardFooter {
   width: 100%;
   height: 16px;
   float: left;
-  padding: 12px 0px;
+  padding: 8px 0px;
 }
 
 .banner {

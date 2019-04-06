@@ -26,8 +26,8 @@
       </div>
       <div class="widget">
         <div class="currentContainer">
-            <div class="description"><%= description %></div>
             <i class="wi wi-owm-<%= icon %>"></i>
+            <div class="description"><%= description %></div>
             <div class="tempGroup">
               <div class="temperature"><%= temperature %><%= unit %></div>
             </div>
@@ -39,6 +39,7 @@
             <div class="forecastDay">
               <div class="cardHeader"><%= forecast[i].day %></div>
               <i class="wi wi-owm-<%= forecast[i].icon %>"></i>
+              <p class="cardDescription"><%= forecast[i].description %></p>
               <div class="cardFooter">
                   <div class="half"><%= forecast[i].high %></div>
                   <div class="half"><%= forecast[i].low %></div>

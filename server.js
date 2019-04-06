@@ -11,152 +11,40 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-  let url = `http://api.openweathermap.org/data/2.5/forecast?q=Seattle&units=imperial&appid=${apiKey}`
-  request(url, function (err, response, body) {
-    if(err){
-      res.render('index', {weather: null, error: 'Error, please try again'});
-    } else {
-      let weather = JSON.parse(body)
-      
-      var date_old, date_new, low, high;
-      var unit = "°F";
-      low = 99999;
-      high = -99999;
-      
-      var forecast = [];
-      var icon = [];
-      var forecastDay = {};
-
-      for (i = 0; i < weather.list.length; i++) {
-        date_new = new Date(weather.list[i].dt_txt);
-
-        if (date_old != null) {
-          if (date_new.getDate() != date_old.getDate() || i == weather.list.length-1 ) {
-            // store values
-            forecastDay['day'] = dayOfWeek(date_old.getDay()) + " " + date_old.getDate();
-            forecastDay['low'] = Math.round(low) + unit;
-            forecastDay['high'] = Math.round(high) + unit;
-            forecastDay['icon'] = getMode(icon);
-            forecast.push(forecastDay);
-            var forecastDay = {};
-
-            // reset values
-            low = 99999;
-            max = -99999;
-            description = "";
-            icon = [];
-            date_old = date_new;
-          }
-        } 
-
-        if (weather.list[i].main.temp_min < low) {
-          low = weather.list[i].main.temp_min;
-        }
-
-        if (weather.list[i].main.temp_max > high) {
-          high = weather.list[i].main.temp_max;
-        }
-
-        icon.push(weather.list[i].weather[0].id);
-        
-        date_old = new Date(weather.list[i].dt_txt);
-      }
-
-      res.render('index', {
-        name: weather.city.name + "," + weather.city.country, 
-        description:weather.list[0].weather[0].description, 
-        icon: weather.list[0].weather[0].id,
-        temperature:Math.round(weather.list[0].main.temp), 
-        unit:unit, 
-        forecast: forecast,
-        error: null
-      });
-    }
-  });
+  weatherFunction(req, res, "imperial");
 })
 
 app.post('/F', function (req, res) {
-  console.log("imperial");
-  let url = `http://api.openweathermap.org/data/2.5/forecast?q=Seattle&units=imperial&appid=${apiKey}`
-  request(url, function (err, response, body) {
-    if(err){
-      res.render('index', {weather: null, error: 'Error, please try again'});
-    } else {
-      let weather = JSON.parse(body)
-      
-      var date_old, date_new, low, high;
-      var unit = "°F";
-      low = 99999;
-      high = -99999;
-      
-      var forecast = [];
-      var icon = [];
-      var forecastDay = {};
-
-      for (i = 0; i < weather.list.length; i++) {
-        date_new = new Date(weather.list[i].dt_txt);
-
-        if (date_old != null) {
-          if (date_new.getDate() != date_old.getDate() || i == weather.list.length-1 ) {
-            // store values
-            forecastDay['day'] = dayOfWeek(date_old.getDay()) + " " + date_old.getDate();
-            forecastDay['low'] = Math.round(low) + unit;
-            forecastDay['high'] = Math.round(high) + unit;
-            forecastDay['icon'] = getMode(icon);
-            forecast.push(forecastDay);
-            var forecastDay = {};
-
-            // reset values
-            low = 99999;
-            max = -99999;
-            description = "";
-            icon = [];
-            date_old = date_new;
-          }
-        } 
-
-        if (weather.list[i].main.temp_min < low) {
-          low = weather.list[i].main.temp_min;
-        }
-
-        if (weather.list[i].main.temp_max > high) {
-          high = weather.list[i].main.temp_max;
-        }
-
-        icon.push(weather.list[i].weather[0].id);
-        
-        date_old = new Date(weather.list[i].dt_txt);
-      }
-
-      res.render('index', {
-        name: weather.city.name + "," + weather.city.country, 
-        description:weather.list[0].weather[0].description, 
-        icon: weather.list[0].weather[0].id,
-        temperature:Math.round(weather.list[0].main.temp), 
-        unit:unit, 
-        forecast: forecast,
-        error: null
-      });
-    }
-  });
+  weatherFunction(req, res, "imperial");
 })
 
 app.post('/C', function (req, res) {
-  console.log("metric!");
-  let url = `http://api.openweathermap.org/data/2.5/forecast?q=Seattle&units=metric&appid=${apiKey}`
+  weatherFunction(req, res, "metric");
+})
+
+function weatherFunction(req, res, unitForm) {
+
+  let url = `http://api.openweathermap.org/data/2.5/forecast?q=Seattle&units=` + unitForm + `&appid=${apiKey}`; 
+
   request(url, function (err, response, body) {
     if(err){
       res.render('index', {weather: null, error: 'Error, please try again'});
     } else {
       let weather = JSON.parse(body)
-      
       var date_old, date_new, low, high;
-      var unit = "°C";
+
       low = 99999;
       high = -99999;
+
+      if (unitForm == "metric") {
+        var unit = "°C";
+      } else if (unitForm == "imperial") {
+        var unit = "°F";
+      }
       
       var forecast = [];
       var icon = [];
+      var description = [];
       var forecastDay = {};
 
       for (i = 0; i < weather.list.length; i++) {
@@ -169,14 +57,15 @@ app.post('/C', function (req, res) {
             forecastDay['low'] = Math.round(low) + unit;
             forecastDay['high'] = Math.round(high) + unit;
             forecastDay['icon'] = getMode(icon);
+            forecastDay['description'] = getMode(description);
             forecast.push(forecastDay);
             var forecastDay = {};
 
             // reset values
             low = 99999;
             max = -99999;
-            description = "";
             icon = [];
+            description = [];
             date_old = date_new;
           }
         } 
@@ -190,6 +79,7 @@ app.post('/C', function (req, res) {
         }
 
         icon.push(weather.list[i].weather[0].id);
+        description.push(weather.list[i].weather[0].description);
         
         date_old = new Date(weather.list[i].dt_txt);
       }
@@ -205,7 +95,8 @@ app.post('/C', function (req, res) {
       });
     }
   });
-})
+
+}
 
 const port = process.env.PORT || 3000
 
