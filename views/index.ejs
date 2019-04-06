@@ -12,43 +12,40 @@
   </head>
   <body>
     <div class="container">
-      <fieldset>
-        <form action="/F" method="post">
-          <!--<input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>-->
-          <button type="submit" action="/F" method="post" class="ghost-button" value="F">F</button>
-        </form>
-        <form action="/C" method="post">
-          <!--<input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>-->
-          <button type="submit" action="/C" method="post" class="ghost-button" value="C">C</button>
-        </form>
-      </fieldset>
-      <div class="details">
-        <% if(name !== null){ %>
-            <p class="city"><%= name %></p>
-            <p class="temp"><%= temperature %><%= unit %></p>
-            <p class="description"><%= description %></p>
-          <% } %>
-  
-          <% if(error !== null){ %>
-            <p><%= error %></p>
-          <% } %>
+      <div class="location">
+          <div class="title"><img src="/css/placeholder.svg" alt="pin"><%= name %></div>
       </div>
-      <div class="cards">
-          <div class="card">
-            <h1>Monday</h1>
-          </div>
-          <div class="card">
-            <h1>Tuesday</h1>
-          </div>
-          <div class="card">
-            <h1>Wednesday</h1>
-          </div>
-          <div class="card">
-            <h1>Thursday</h1>
-          </div>
-          <div class="card">
-            <h1>Friday</h1>
-          </div>
+      <div class="units">
+          <form action="/C" method="post">
+            <button type="submit" action="/C" class="invisibleButton" method="post" value="C">°C</button>
+          </form>
+          <p class="divider">|</p>
+          <form action="/F" method="post">
+            <button type="submit" action="/C" class="invisibleButton" method="post" value="F">°F</button>
+          </form>  
+      </div>
+      <div class="widget">
+        <div class="currentContainer">
+            <div class="description"><%= description %></div>
+            <i class="wi wi-owm-<%= icon %>"></i>
+            <div class="tempGroup">
+              <div class="temperature"><%= temperature %><%= unit %></div>
+            </div>
+        </div>
+
+        <!-- FORECAST -->
+        <div class="forecastContainer">
+          <% for (var i = 0; i < forecast.length; i++) { %>
+            <div class="forecastDay">
+              <div class="cardHeader"><%= forecast[i].day %></div>
+              <i class="wi wi-owm-<%= forecast[i].icon %>"></i>
+              <div class="cardFooter">
+                  <div class="half"><%= forecast[i].high %></div>
+                  <div class="half"><%= forecast[i].low %></div>
+              </div>
+            </div>
+          <% } %>
+        </div>
       </div>
     </div>
   </body>

@@ -4,148 +4,214 @@
 */
 
 html {
-  background-color: #FAFAFA;;
-}
-
-body {
-    width: 100%;
-    margin: 0 auto;
-    font-family: 'Open Sans', sans-serif;
+  background-color: #fafafa;;
 }
 
 .container {
-    width: 90%;
-    margin: 0 auto;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-  fieldset {
-    display: flex;
-    flex-direction: row;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-before: 0em;
-    -webkit-padding-start: 0em;
-    -webkit-padding-end: 0em;
-    -webkit-padding-after: 0em;
-    border: 0px;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-    min-width: -webkit-min-content;
-    padding: 30px;
-  }
+.widget {
+  width: 800px;
+  height: inherit;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 10px;
+  /*border: 1px solid #ccc;*/
+}
 
-  .ghost-input {
-    font-weight:300;
-    width: 300px;
-    font-size: 24px;
-    border:0px;
-    outline: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #4b545f;
-    font-family: Open Sans,Verdana;
-    padding: 10px 15px;
-    margin: 30px 0px 0px 0px;
-    background-color: transparent;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -ms-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
-  }
-  .ghost-input:focus {
-    border-bottom:1px solid #ddd;
-  }
-  .ghost-button {
-    border:2px solid #ddd;
-    padding:10px 10px;
-    width: 50px;
-    margin-left:10px;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -ms-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
-  }
-  .ghost-button:hover {
-    border:2px solid #515151;
-  }
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: rgb(40,40,40);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  height: 15px;
+}
 
-  .details {
-    width: 100%;
-    height: 200px;
-    margin-top: 100px;
-    text-align: center;
-  }
+.half {
+  width: 50%;
+  float: left;
+}
 
-  p {
-    margin: 0;
-    padding: 0;
-  }
 
-  .city {
-    color: black;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: .3em;
-  }
+/* CURRENT */
+.currentContainer {
+  height: 200px;
+  text-align: left;
+  padding: 10px;
+}
 
-  .temp {
-    font-size: 60px;
-    font-weight: 700;
-    color: black;
-    text-align: center;
-    margin-top: 10px;
-  }
+.currentContainer i {
+  margin-top: 6px;
+  font-size: 3.5em;
+  width: 100%;
+  margin-bottom: 4px;
+  text-align: center;
+  
+}
 
-  .cards {
-    width: 100%;
-    margin-top:100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+.tempGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: top;
+  text-align: center;
+  float: left;
+}
 
-  .card {
-    width: 170px;
-    height: 248px;
-    box-shadow: 0px 8px 30px rgba(0, 105, 243, 0.1), 0px 10px 40px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    margin: 20px;
-    background-color:#fdfdfd;
-  }
+.temperature {
+  float: left;
+  color: rgb(23, 23, 23);
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 600;
+  text-align: center;
+}
 
-  .card:hover {
-    background-color:#ffffff;
-    box-shadow: 0px 8px 30px rgba(0, 105, 243, 0.15), 0px 10px 40px rgba(0, 0, 0, 0.1);
-  }
+.location {
+  width: 50%;
+  float: left;
+}
 
-  .card h1 {
-    font-size: 12px;
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
-    padding-top: 20px;
-    font-weight: 300;
-    font-size: 12px;
-    text-align: center;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(26, 27, 28, 0.9);
-  }
+.title {
+  height: 20px;
+  float: left;
+  text-transform: uppercase;
+  letter-spacing: .4em;
+  margin-top:2px;
+}
 
-  .description {
-    color: black;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: capitalize;
-    margin-top: 5px;
-  }
+.title img {
+  height: 16px;
+  width: 16px;
+  margin-right:8px;
+  float: left;
+}
+
+.units {
+  width: 50%;
+  float: right;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+
+.invisibleButton {
+  font-family: 'Open Sans', sans-serif;
+  float: right;
+  color: rgb(23, 23, 23);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  outline:none;
+  width: 30px;
+  height: 20px;
+  border-radius: 4px;
+  margin-top: 2px;
+  padding: 0;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+.invisibleButton:hover {
+  background-color: rgba(100,100,100,.1);
+}
+
+.divider {
+  font-family: 'Open Sans', sans-serif;
+  float: right;
+  color: rgb(200, 200, 200);
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  width: 40px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+
+
+
+.description {
+  width: 100%;
+  float: left;
+  color: rgb(23, 23, 23);
+  font-size: 18px;
+  text-align: left;
+  text-transform: capitalize;
+  text-align: center;
+  margin-top:190px;
+}
+
+
+
+/* FORECAST */
+
+.forecastContainer {
+  width: 100%;
+  margin-top:40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  float: left;
+}
+
+.forecastDay {
+  width: 180px;
+  height: 188px;
+  border-radius: 4px;
+  margin: 10px;
+  /*padding: 24px;*/
+  background-color:#fff;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px, rgba(0, 0, 0, 0.05) 0px 0.5px 1px;
+  transition: all 0.333s ease-out 0s;
+}
+
+.forecastDay:hover {
+  transform: translate3d(0px, -1px, 0px);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 12px 25px, rgba(0, 0, 0, 0.08) 0px 4px 11px;
+}
+
+.cardHeader {
+  width: 100%;
+  height: 16px;
+  float: left;
+  border-bottom: 1px solid rgba(115, 115, 115, 0.1);
+  padding: 12px 0px;
+}
+
+.forecastDay i {
+  margin-top: 28px;
+  font-size: 3.5em;
+  height: 70px;
+}
+
+.cardFooter {
+  width: 100%;
+  height: 16px;
+  float: left;
+  padding: 12px 0px;
+}
+
+.banner {
+  width: 100%;
+  /*background: linear-gradient(to left, #da5da5 20%, #c06a9b 40%, #f97d88 60%);*/
+  background: #2193b0;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  height: 36px;
+}
